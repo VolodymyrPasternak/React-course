@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <title>Document</title>
 </head>
 <body>
+    <!-- Задача 1. Вводиться кількість пасажирів. Вивести:
+●	скільки потрібно автобусів (кожен автобус на 20 місць)
+●	скільки пляшок води (кожному пасажиру 2 пляшки)
+●	скільки бутербродів (кожному пасажиру 3 бутерброди) -->
+    <div id="root"></div>
+    <script type="text/babel">
+        function Pasangers() {
+            const [pasangersNumber, setPasangersNumber ] = React.useState(0)
+            function busNumber() {
+                return Math.ceil(pasangersNumber/20)}
+            function waterBottles() {
+                return pasangersNumber*2}
+            function sandwichesNum() {
+                return pasangersNumber*3}
+            return (
+                <React.Fragment>
+                    <label>Введіть кількість пасажирів
+                        <input 
+                        type="number" 
+                        value={pasangersNumber}
+                        onChange = {(e) => setPasangersNumber(Number(e.target.value))}/>    
+                    </label>
+                    <hr/>
+                    <div>Потрібно автобусів: {busNumber()}</div>
+                    <div>Потрібно пляшок води: {waterBottles()}</div>
+                    <div>Потрібно бутербродів: {sandwichesNum()}</div>
+                </React.Fragment>
+            )
+        }
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(<Pasangers />)
+    </script>
+
     
 </body>
 </html>
